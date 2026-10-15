@@ -28,12 +28,13 @@ export function Testimonials() {
       <SectionHeading
         eyebrow="TESTIMONIALS"
         titleId="testimonials-title"
+        // Headline quotes one of the couples (Noam's message below).
         title={
           <>
-            זוגות <span className="text-gradient">ממליצים</span>
+            ״אנשים לא <span className="text-gradient">הפסיקו לרקוד״</span>
           </>
         }
-        subtitle="צילומי מסך אמיתיים מהוואטסאפ – מה שזוגות כתבו לי אחרי האירוע."
+        subtitle="ההודעות שמחכות לי בבוקר שאחרי האירוע – בשבילן שווה כל רגע מאחורי העמדה."
       />
 
       <div className="mx-auto grid max-w-5xl items-start gap-5 md:grid-cols-2 md:gap-6">
