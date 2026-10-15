@@ -283,14 +283,17 @@ export type Testimonial = {
   quote: string
   venue?: string
   date?: string
-  /** Only for reviews that actually came with a star rating (e.g. Google reviews). */
-  rating?: 1 | 2 | 3 | 4 | 5
+  /** The couple's original WhatsApp screenshot (shown instead of the text, which becomes its alt text). */
+  screenshot?: { src: string; width: number; height: number }
 }
 
 /**
- * Real messages couples sent Oded after their event (WhatsApp screenshots he shared), lightly trimmed –
- * stretched letters and repeated punctuation tidied, first names only. Add new ones the same way.
+ * Real messages couples sent Oded after their event. The site shows the WhatsApp screenshots he shared
+ * (public/photos/reviews – cropped, profile pictures blurred, one surname removed); `quote` is a lightly
+ * tidied transcription used as the image's alt text for screen readers.
  */
+const review = (name: string, height: number) => ({ src: photo(`reviews/${name}`), width: 900, height })
+
 export const TESTIMONIALS: Testimonial[] = [
   {
     names: 'נועם',
@@ -299,12 +302,14 @@ export const TESTIMONIALS: Testimonial[] = [
       'אנחנו לא מספיקים להתאושש מכל הטירוף שהיה, אבל הייתי חייבת לכתוב לך שהיית פשוט מדהים, 10/100000000! אנשים לא הפסיקו לרקוד ולהחמיא עלייך כל האירוע וגם אחרי. היית פשוט מושלם בשבילנו, הבנת אותנו בדיוק ואת הווייב של האנשים… קלעת לכל הקהל שלנו בול וכיבדת את כולם. באמת שאתה מדהים והבחירה הכי טובה בעולם!',
     venue: 'דסטינו',
     date: 'יוני 2026',
+    screenshot: review('noam', 1677),
   },
   {
     names: 'רחלי וגיא',
     role: 'חתן וכלה',
     quote:
       'מאיפה נתחיל בכלל? עשית לנו את האירוע הכי הכי שמח שראיתי בחיים! אתה מטורף ואתה בן אדם עם נשמה ענקית. השירות שלך, הסבלנות שלך והמוזיקה שלך! תודה תודה… נכנסת לנו ללב בקטע אחר, אוהבים אותך.',
+    screenshot: review('racheli', 967),
   },
   {
     names: 'עינב',
@@ -312,12 +317,14 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       'איזה איש מדהים אתה, הבחירה הכי טובה בעולם (!!) שליווית אותנו ביום שלנו. כל האורחים עפו עליך ועל המוזיקה המושלמת שלך. קיימת את כל הבקשות שלנו ופשוט כולם נהנו בכל רגע (דודה שלי אמרה לי וואו על השירים בקבלת פנים 😂). וכמובן שנמליץ עליך, יא תותח!',
     date: 'אוקטובר 2026',
+    screenshot: review('einav', 967),
   },
   {
     names: 'שלומי',
     role: 'חתן',
     quote: 'אח יקר שלי, איזה אירוע עשית לנו! הכל היה מדויק, מסודר, הכי שמח שיש בעולם. אין עלייך יא אח שלי, מספר 1 אתה!',
     date: 'אוקטובר 2026',
+    screenshot: review('shlomi', 967),
   },
 ]
 
@@ -342,7 +349,7 @@ export const GALLERY: GalleryImage[] = [
   galleryPhoto('img_0247', 'עודד עם חתן וכלה בגן אירועים', 'יום החתונה'),
   galleryPhoto('img_7251', 'עודד עם חתן וכלה תחת תקרת לדים', 'רגע עם הזוג'),
   galleryPhoto('img_8795', 'כיפת לדים מעל רחבה רוקדת', 'על הרחבה'),
-  galleryPhoto('img_0384', 'טקס חופה בשקיעה על גג', 'חופת שקיעה'),
+  galleryPhoto('r6m30249', 'אולם חתונה מלא עם נברשת ענקית וטבעות ניאון', 'רחבה מלאה'),
   galleryPhoto('img_9887', 'אולם אירועים עם נברשת ולייזרים סגולים', 'אווירה'),
   galleryPhoto('img_0131', 'עודד עם חתן וכלה במתחם אירועים פתוח', 'עוד זוג מאושר'),
   galleryPhoto('img_1216', 'זוג בפגישת תכנון עם עודד, מחזיקים את תיק ODED EL', 'פגישת תכנון'),
