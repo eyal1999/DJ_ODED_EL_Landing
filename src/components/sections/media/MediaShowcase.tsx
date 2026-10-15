@@ -19,13 +19,13 @@ export function MediaShowcase() {
         titleId="media-title"
         title={
           <>
-            מוזיקה <span className="text-gradient">ורמיקסים</span>
+            המוזיקה <span className="text-gradient">שלי</span>
           </>
         }
         subtitle={
           hasVideos
             ? 'אפטרמוביז מחתונות, סטים ממועדונים והופעות לייב – תראו ותשמעו בעצמכם.'
-            : 'סטים מלאים מהרחבה, מאשאפים ורמיקסים מקוריים – תשמעו בעצמכם.'
+            : 'סט חתונות מלא, ישר מהרחבה – תשמעו בעצמכם.'
         }
       />
 
@@ -39,7 +39,7 @@ export function MediaShowcase() {
             </span>
             <div>
               <h3 className="text-2xl font-black sm:text-3xl">סטים ורמיקסים להאזנה</h3>
-              <p className="mt-1 text-stone-400">מאשאפים מקוריים וסטים מלאים – ישירות מהעמדה.</p>
+              <p className="mt-1 text-stone-400">סטים מלאים, ישירות מהעמדה.</p>
             </div>
           </Reveal>
         </>

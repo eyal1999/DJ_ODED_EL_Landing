@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { AudioLines, Disc3, Gem, Heart, MapPin, PartyPopper, Sparkles } from 'lucide-react'
+import { AudioLines, Disc3, Heart, MapPin, PartyPopper, Sparkles, Users } from 'lucide-react'
 
 /* =================================================================
  * All site content lives in this file.
@@ -28,7 +28,7 @@ export const BRAND = {
   name: 'ODED EL',
   role: 'DJ & Producer',
   footerBlurb:
-    'די ג׳יי ומפיק מוזיקלי לחתונות ואירועים מתל אביב. מזרחית, מיינסטרים ומאשאפים מקוריים – כדי שהרחבה שלכם לא תתרוקן לרגע.',
+    'די ג׳יי ומפיק מוזיקלי לחתונות ואירועים מראשון לציון. מזרחית, מיינסטרים והפקות ורמיקסים ייחודיים – כדי שהרחבה שלכם לא תתרוקן לרגע.',
 }
 
 export const CONTACT = {
@@ -75,13 +75,13 @@ export const HERO = {
   availability: 'תאריכים פנויים לעונת 2027 · בדקו זמינות',
   titleTop: 'האמנות של המוזיקה',
   titleBottom: 'לאירוע שלכם',
-  lead: 'רחבה מלאה מהשיר הראשון ועד האחרון: סט שנבנה במיוחד בשבילכם – מזרחית, מיינסטרים ולהיטים – עם מאשאפים ורמיקסים מקוריים שמרימים את הערב.',
+  lead: 'רחבה מלאה מהשיר הראשון ועד האחרון: סט שנבנה במיוחד בשבילכם – מזרחית, מיינסטרים ולהיטים – עם הפקות ורמיקסים ייחודיים שמרימים את הערב.',
   /** Promo reel (14s loop cut from Oded's Facebook reel), pinned behind the hero. */
   video: { webm: asset('video/hero.webm'), mp4: asset('video/hero.mp4'), poster: asset('video/hero-poster.webp') },
   highlights: [
     { icon: Heart, label: 'מתמחה בחתונות ואירועים' },
     { icon: Disc3, label: 'מזרחית · מיינסטרים · להיטים' },
-    { icon: AudioLines, label: 'מאשאפים ורמיקסים מקוריים' },
+    { icon: AudioLines, label: 'הפקות ורמיקסים ייחודיים' },
   ] satisfies { icon: LucideIcon; label: string }[],
 }
 
@@ -90,11 +90,12 @@ export const MARQUEE = [
   'חינות',
   'בר/בת מצווה',
   'אירועים משפחתיים',
+  'אירועים עסקיים',
   'מסיבות פרטיות',
   'מועדונים',
   'מזרחית',
   'מיינסטרים',
-  'מאשאפים',
+  'הפקות ייחודיות',
   'רמיקסים מקוריים',
 ]
 
@@ -111,9 +112,9 @@ export type Achievement = {
 
 const ACHIEVEMENTS: Achievement[] = [
   { icon: Heart, title: 'חתונות ואירועים', text: 'ההתמחות שלי – מהחופה ועד הסט האחרון' },
-  { icon: PartyPopper, title: 'חינות ומסיבות', text: 'חינות, אירועים משפחתיים, מועדונים ומסיבות' },
-  { icon: Disc3, title: 'הפקות מקוריות', text: 'מאשאפים ורמיקסים בסאונדקלאוד' },
-  { icon: MapPin, title: 'פריסה ארצית', text: 'מתל אביב – מקיסריה ועד הרי ירושלים' },
+  { icon: PartyPopper, title: 'חינות ואירועים משפחתיים', text: 'חינות, בר ובת מצווה ושמחות משפחתיות' },
+  { icon: Disc3, title: 'הפקות ייחודיות', text: 'הפקות ורמיקסים ייחודיים משלי' },
+  { icon: MapPin, title: 'פריסה ארצית', text: 'מראשון לציון – מקיסריה ועד הרי ירושלים' },
 ]
 
 export const ABOUT = {
@@ -121,15 +122,15 @@ export const ABOUT = {
   imageAlt: 'עודד מאחורי עמדת ODED EL מול מסך לדים עגול',
   /** Floating badges on the photo. */
   badge: { title: 'Weddings & Events', text: 'DJ ODED EL' },
-  stat: { value: 10000, suffix: '+', label: 'האזנות לסטים שלי בסאונדקלאוד' },
+  stat: { value: 10000, suffix: '+', label: 'האזנות בסאונדקלאוד' },
   paragraphs: [
-    'אני עודד – DJ ומפיק מוזיקלי מתל אביב, ומתמחה בחתונות ואירועים. בכל אירוע אני בונה את הסט מאפס, כך שירגיש בדיוק כמוכם: מזרחית שמקפיצה את הרחבה, מיינסטרים ולהיטים, ומה שאתם הכי אוהבים.',
-    'לצד העמדה אני מפיק מאשאפים ורמיקסים משלי – אותם תשמעו בסטים ובסאונדקלאוד. השנה ליוויתי חתונות במקומות כמו יונו קיסריה, קדם, דסטינו ואהובת הספן. והסוד האמיתי? קריאת הקהל – לדעת מה הרחבה צריכה עוד לפני שהיא יודעת.',
+    'אני עודד – DJ ומפיק מוזיקלי מראשון לציון, ומתמחה בחתונות ואירועים. בכל אירוע אני בונה את הסט מאפס, כך שירגיש בדיוק כמוכם: מזרחית שמקפיצה את הרחבה, מיינסטרים ולהיטים, ומה שאתם הכי אוהבים.',
+    'לצד העמדה אני יוצר הפקות ורמיקסים ייחודיים – אותם תשמעו בסטים שלי. השנה ליוויתי חתונות במקומות כמו יונו קיסריה, קדם, דסטינו ואהובת הספן. והסוד האמיתי? קריאת הקהל – לדעת מה הרחבה צריכה עוד לפני שהיא יודעת.',
   ],
   strengths: [
     'קריאת קהל מדויקת – רחבה מלאה מהשיר הראשון',
     'סט מותאם אישית – מזרחית, מיינסטרים ומה שאתם אוהבים',
-    'מאשאפים ורמיקסים מקוריים שאני מפיק בעצמי',
+    'הפקות ורמיקסים ייחודיים שאני יוצר בעצמי',
     'פגישת תכנון אישית ובניית פלייליסט משותפת',
   ],
   achievements: ACHIEVEMENTS,
@@ -137,7 +138,7 @@ export const ABOUT = {
 
 /* ---------- Services ---------- */
 
-export const EVENT_TYPES = ['חתונה', 'חינה', 'בר/בת מצווה', 'אירוע פרטי', 'מסיבה', 'אחר'] as const
+export const EVENT_TYPES = ['חתונה', 'חינה', 'בר/בת מצווה', 'אירוע משפחתי', 'אירוע עסקי', 'מסיבה', 'אחר'] as const
 export type EventType = (typeof EVENT_TYPES)[number]
 
 export type Service = {
@@ -160,7 +161,7 @@ export const SERVICES: Service[] = [
     en: 'Weddings',
     description:
       'מקבלת הפנים ועד הסט האחרון – ליווי מוזיקלי מלא שנבנה יחד אתכם, עם רגעים שאף אחד לא ישכח.',
-    features: ['ליווי מוזיקלי לקבלת פנים וחופה', 'פגישת תכנון ובניית פלייליסט', 'מאשאפים אישיים לכניסה ולסלואו'],
+    features: ['ליווי מוזיקלי לקבלת פנים וחופה', 'פגישת תכנון ובניית פלייליסט', 'רמיקסים ייחודיים לכניסה ולסלואו'],
     image: photo('service-weddings'),
     eventType: 'חתונה',
   },
@@ -175,22 +176,22 @@ export const SERVICES: Service[] = [
     eventType: 'חינה',
   },
   {
-    id: 'family',
-    icon: Gem,
-    title: 'אירועים משפחתיים ופרטיים',
-    en: 'Family & Private',
-    description: 'בר ובת מצווה, ימי הולדת ואירועים פרטיים – אווירה מדויקת שמתאימה לקהל ולמקום.',
-    features: ['התאמה מלאה לגילאים ולסגנונות', 'סט שמחבר בין הדורות על הרחבה', 'סטים מיוחדים לרגעי השיא'],
+    id: 'family-business',
+    icon: Users,
+    title: 'אירועים משפחתיים ועסקיים',
+    en: 'Family & Corporate',
+    description: 'בר ובת מצווה, ימי הולדת, אירועי חברה וכנסים – אווירה מדויקת שמתאימה לקהל ולמקום.',
+    features: ['התאמה מלאה לקהל ולאופי האירוע', 'מוזיקת רקע לקבלת פנים ורחבה מלאה בהמשך', 'סטים מיוחדים לרגעי השיא'],
     image: photo('service-family'),
-    eventType: 'בר/בת מצווה',
+    // Covers two event types, so its CTA doesn't preset one in the contact form.
   },
   {
     id: 'parties',
     icon: PartyPopper,
     title: 'מסיבות ומועדונים',
     en: 'Parties & Club',
-    description: 'מסיבות פרטיות, ערבי מועדון ומסיבות פורים וקיץ – סטים מלאי אנרגיה עם מאשאפים ורמיקסים מקוריים.',
-    features: ['מיינסטרים, להיטים ומזרחית', 'מאשאפים ורמיקסים מקוריים', 'אנרגיה עד הסט האחרון'],
+    description: 'מסיבות פרטיות, ערבי מועדון ומסיבות פורים וקיץ – סטים מלאי אנרגיה עם הפקות ורמיקסים ייחודיים.',
+    features: ['מיינסטרים, להיטים ומזרחית', 'הפקות ורמיקסים ייחודיים', 'אנרגיה עד הסט האחרון'],
     image: photo('service-parties'),
     eventType: 'מסיבה',
   },
@@ -232,20 +233,15 @@ export type SpotifyEmbedType = 'artist' | 'album' | 'playlist' | 'track'
 export const MUSIC = {
   /** Optional Spotify artist / playlist embed, e.g. { type: 'artist', id: '…', title: 'הפלייליסט הרשמי' }. */
   spotify: null as { type: SpotifyEmbedType; id: string; title: string } | null,
-  /** Public SoundCloud track / set URLs. */
-  soundcloud: [
-    { title: 'סט חתונות מזרחית 2026', url: 'https://soundcloud.com/oqgfg47uk3ne/dj-oded-el-2026' },
-    {
-      title: 'Nanana x Freed From Desire (Mashup)',
-      url: 'https://soundcloud.com/oqgfg47uk3ne/peggy-gou-it-goes-like-nanana-x-freed-from-desire-oded-elle-mashup',
-    },
-    {
-      title: 'אייל גולן – עיר נמל & טרפטוני (עם שרון סלמה)',
-      url: 'https://soundcloud.com/oqgfg47uk3ne/eyal-golan-air-namal-beach-of-traptoni-oded-elle-sharon-salama',
-    },
-  ],
+  /** Public SoundCloud track / set URLs – Oded wants only the wedding set shown. */
+  soundcloud: [{ title: 'סט חתונות מזרחית 2026', url: 'https://soundcloud.com/oqgfg47uk3ne/dj-oded-el-2026' }],
   platforms: [
-    { key: 'soundcloud', label: 'האזינו בסאונדקלאוד', href: 'https://soundcloud.com/oqgfg47uk3ne', color: '#FF5500' },
+    {
+      key: 'soundcloud',
+      label: 'האזינו בסאונדקלאוד',
+      href: 'https://soundcloud.com/oqgfg47uk3ne/dj-oded-el-2026',
+      color: '#FF5500',
+    },
   ] satisfies { key: SocialKey; label: string; href: string; color: string }[],
 }
 
