@@ -2,7 +2,7 @@
 
 Hebrew (RTL) one-page site for **ODED EL**, a Tel Aviv–based DJ and producer for weddings and events.
 
-**Live:** https://eyal1999.github.io/DJ_ODED_EL_Landing/
+**Live:** https://www.djodedel.com
 
 Built with React 19, TypeScript, Vite 8, Tailwind CSS v4, Motion and Lenis.
 
@@ -33,8 +33,10 @@ services, SoundCloud tracks, Instagram posts, gallery photos and testimonials.
 ## Deployment
 
 Every push to `main` builds and publishes the site to GitHub Pages via `.github/workflows/deploy.yml`
-(repository **Settings → Pages → Source: GitHub Actions**). The workflow builds with
-`BASE_PATH=/<repo-name>/`, and every asset URL goes through `asset()` / `HOME_URL` in `site.ts`, so the
-site works both at the domain root and under the project sub-path.
+(repository **Settings → Pages → Source: GitHub Actions**, custom domain `www.djodedel.com`).
 
-If the site moves to its own domain, also update the absolute `og:url` / `og:image` URLs in `index.html`.
+- **DNS (GoDaddy):** `A @` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+  and `CNAME www` → `eyal1999.github.io`. GitHub redirects `djodedel.com` to `www`.
+- **Base path:** the workflow builds with `BASE_PATH=/`. Every asset URL goes through `asset()` / `HOME_URL`
+  in `site.ts`, so building with `BASE_PATH=/<repo-name>/` also works if the custom domain is ever removed.
+- The absolute `canonical` / `og:url` / `og:image` URLs in `index.html` point at the domain.

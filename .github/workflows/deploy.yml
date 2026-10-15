@@ -31,8 +31,9 @@ jobs:
 
       - run: npm run build
         env:
-          # Project site: https://<user>.github.io/<repo>/
-          BASE_PATH: /${{ github.event.repository.name }}/
+          # Served from the custom domain root (www.djodedel.com). Without a custom domain the
+          # project site lives at https://<user>.github.io/<repo>/ – use /${{ github.event.repository.name }}/ then.
+          BASE_PATH: /
 
       - uses: actions/upload-pages-artifact@v4
         with:
