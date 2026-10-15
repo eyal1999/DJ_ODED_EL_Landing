@@ -20,8 +20,6 @@ export function Testimonials() {
   const [pages, setPages] = useState(TESTIMONIALS.length)
   const [paused, setPaused] = useState(false)
 
-  const average = TESTIMONIALS.reduce((sum, t) => sum + t.rating, 0) / TESTIMONIALS.length
-
   // How many "start positions" exist = cards - cards visible at once + 1.
   useEffect(() => {
     const track = trackRef.current
@@ -85,14 +83,7 @@ export function Testimonials() {
             זוגות <span className="text-gradient">ממליצים</span>
           </>
         }
-        subtitle={
-          <span className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-            <Stars rating={Math.round(average)} />
-            <span>
-              <strong className="text-white">{average.toFixed(1)}</strong> ממוצע דירוג מתוך {TESTIMONIALS.length} המלצות
-            </span>
-          </span>
-        }
+        subtitle="הודעות אמיתיות שקיבלתי מזוגות אחרי האירוע."
       />
 
       <Reveal>
@@ -147,8 +138,10 @@ function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
   return (
     <figure className="glass glow-ring relative flex w-[86%] shrink-0 snap-start flex-col rounded-3xl p-7 sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]">
       <Quote aria-hidden className="absolute end-6 top-6 size-12 text-white/[0.06]" />
-      <Stars rating={t.rating} />
-      <blockquote className="mt-5 flex-1 text-[15px] leading-relaxed text-stone-200">{t.quote}</blockquote>
+      {t.rating && <Stars rating={t.rating} />}
+      <blockquote className={cn('flex-1 text-[15px] leading-relaxed text-stone-200', t.rating ? 'mt-5' : 'mt-1')}>
+        {t.quote}
+      </blockquote>
       <figcaption className="mt-6 border-t border-white/10 pt-5">
         <div className="flex items-center gap-3">
           <span
@@ -162,16 +155,22 @@ function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
             <p className="text-sm text-stone-400">{t.role}</p>
           </div>
         </div>
-        <div className="mt-4 flex flex-wrap gap-2 text-xs text-stone-300">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 ring-1 ring-white/10">
-            <MapPin className="size-3.5 text-gold-400" />
-            {t.venue}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 ring-1 ring-white/10">
-            <CalendarDays className="size-3.5 text-gold-400" />
-            {t.date}
-          </span>
-        </div>
+        {(t.venue || t.date) && (
+          <div className="mt-4 flex flex-wrap gap-2 text-xs text-stone-300">
+            {t.venue && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 ring-1 ring-white/10">
+                <MapPin className="size-3.5 text-gold-400" />
+                {t.venue}
+              </span>
+            )}
+            {t.date && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 ring-1 ring-white/10">
+                <CalendarDays className="size-3.5 text-gold-400" />
+                {t.date}
+              </span>
+            )}
+          </div>
+        )}
       </figcaption>
     </figure>
   )

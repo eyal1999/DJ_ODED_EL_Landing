@@ -17,8 +17,8 @@ export const HOME_URL = import.meta.env.BASE_URL
 export const asset = (path: string) => `${HOME_URL}${path}`
 
 /**
- * Photos live in /public/photos. The current set comes from Oded's public Instagram / SoundCloud
- * (web resolution, ~640px) – swap in his original high-res files under the same names when available.
+ * Photos live in /public/photos, converted to WebP from the original files Oded sent (Google Drive).
+ * Instagram tiles (ig-*) mirror his posts; the gallery has a grid size (-sm) and a lightbox size (-lg).
  */
 const photo = (file: string) => asset(`photos/${file}.webp`)
 
@@ -285,43 +285,73 @@ export type Testimonial = {
   names: string
   role: string
   quote: string
-  venue: string
-  date: string
-  rating: 1 | 2 | 3 | 4 | 5
+  venue?: string
+  date?: string
+  /** Only for reviews that actually came with a star rating (e.g. Google reviews). */
+  rating?: 1 | 2 | 3 | 4 | 5
 }
 
 /**
- * Real client reviews only. While this list is empty the section and its menu link stay hidden.
- * Oded keeps his recommendations in the "המלצות" story highlight on Instagram – transcribe them
- * here (with the couple's OK), e.g.:
- * { names: 'נועה ואיתי', role: 'חתן וכלה', quote: '…', venue: 'יונו קיסריה', date: 'יוני 2026', rating: 5 },
+ * Real messages couples sent Oded after their event (WhatsApp screenshots he shared), lightly trimmed –
+ * stretched letters and repeated punctuation tidied, first names only. Add new ones the same way.
  */
-export const TESTIMONIALS: Testimonial[] = []
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    names: 'נועם',
+    role: 'כלה',
+    quote:
+      'אנחנו לא מספיקים להתאושש מכל הטירוף שהיה, אבל הייתי חייבת לכתוב לך שהיית פשוט מדהים, 10/100000000! אנשים לא הפסיקו לרקוד ולהחמיא עלייך כל האירוע וגם אחרי. היית פשוט מושלם בשבילנו, הבנת אותנו בדיוק ואת הווייב של האנשים… קלעת לכל הקהל שלנו בול וכיבדת את כולם. באמת שאתה מדהים והבחירה הכי טובה בעולם!',
+    venue: 'דסטינו',
+    date: 'יוני 2026',
+  },
+  {
+    names: 'רחלי וגיא',
+    role: 'חתן וכלה',
+    quote:
+      'מאיפה נתחיל בכלל? עשית לנו את האירוע הכי הכי שמח שראיתי בחיים! אתה מטורף ואתה בן אדם עם נשמה ענקית. השירות שלך, הסבלנות שלך והמוזיקה שלך! תודה תודה… נכנסת לנו ללב בקטע אחר, אוהבים אותך.',
+  },
+  {
+    names: 'עינב',
+    role: 'כלה',
+    quote:
+      'איזה איש מדהים אתה, הבחירה הכי טובה בעולם (!!) שליווית אותנו ביום שלנו. כל האורחים עפו עליך ועל המוזיקה המושלמת שלך. קיימת את כל הבקשות שלנו ופשוט כולם נהנו בכל רגע (דודה שלי אמרה לי וואו על השירים בקבלת פנים 😂). וכמובן שנמליץ עליך, יא תותח!',
+    date: 'אוקטובר 2026',
+  },
+  {
+    names: 'שלומי',
+    role: 'חתן',
+    quote: 'אח יקר שלי, איזה אירוע עשית לנו! הכל היה מדויק, מסודר, הכי שמח שיש בעולם. אין עלייך יא אח שלי, מספר 1 אתה!',
+    date: 'אוקטובר 2026',
+  },
+]
 
 /* ---------- Gallery ---------- */
 
 export type GalleryImage = { src: string; full: string; alt: string; caption: string }
 
-const galleryPhoto = (code: string, alt: string, caption: string): GalleryImage => ({
-  src: photo(`gallery-${code}`),
-  full: photo(`gallery-${code}`),
+const galleryPhoto = (slug: string, alt: string, caption: string): GalleryImage => ({
+  src: photo(`gallery/${slug}-sm`),
+  full: photo(`gallery/${slug}-lg`),
   alt,
   caption,
 })
 
 export const GALLERY: GalleryImage[] = [
-  galleryPhoto('DVN5kbDDWKJ', 'עודד מאחורי עמדת ODED EL, בשחור-לבן', 'מאחורי העמדה'),
-  galleryPhoto('DaK1g4qDUn4', 'רחבת ריקודים מלאה באולם עם נברשת ותאורת במה', 'הרחבה מלאה'),
-  galleryPhoto('DYUcpeoMPax', 'עודד עם זוג מתחתן ליד החופה', 'הזוגות שלי'),
-  galleryPhoto('Dbghp8ONqBG', 'עודד בעמדת ODED EL מול מסך לדים עגול', 'סט חתונה'),
-  galleryPhoto('DaP5ztwDYt_', 'רוקדים על הבמה סביב עמדת ODED EL', 'שיא הערב'),
-  galleryPhoto('DZIJWamjcRi', 'עודד מגבו מול קהל ענק ותאורת לייזרים', 'מול הקהל'),
-  galleryPhoto('DYXaLhPtRME', 'עודד עם זוג מתחתן בחופה על גג מול הים', 'חופה מול הים'),
-  galleryPhoto('DbgeqSHtg4-', 'עודד מנגן בלילה באירוע חוץ', 'אירוע חוץ'),
-  galleryPhoto('DdRnyDXDUMj', 'רחבה רוקדת באורות אדומים וכחולים', 'על הרחבה'),
-  galleryPhoto('DXPWzm1DedH', 'עודד עם זוג מתחתן בגן אירועים', 'יום החתונה'),
-  galleryPhoto('DaYehdgNQ2L', 'עודד בעמדת ODED EL בתאורת ניאון כחולה', 'בעמדה'),
-  galleryPhoto('DbghDAVjYk3', 'עמדת ODED EL מוארת בלילה', 'ODED EL'),
+  galleryPhoto('7c2955f3', 'עודד בעמדת ODED EL מתחת למשולש ניאון כחול', 'מאחורי העמדה'),
+  galleryPhoto('r6m30123', 'עודד בעמדה מול רחבה מלאה ונברשת גדולה', 'מול הרחבה'),
+  galleryPhoto('img_0012', 'עודד עם חתן וכלה ליד החופה', 'הזוגות שלי'),
+  galleryPhoto('img_8736', 'אולם עם עמודי לדים ענקיים, לייזרים ועמדת ODED EL', 'הפקה גדולה'),
+  galleryPhoto('cr1_0017', 'קהל עם ידיים באוויר מול עמדת ODED EL בתאורה ורודה', 'שיא הערב'),
+  galleryPhoto('img_8917', 'עודד מגבו מול קהל ענק ותאורת לייזרים', 'מול הקהל'),
+  galleryPhoto('img_0247', 'עודד עם חתן וכלה בגן אירועים', 'יום החתונה'),
+  galleryPhoto('img_7251', 'עודד עם חתן וכלה תחת תקרת לדים', 'רגע עם הזוג'),
+  galleryPhoto('img_8795', 'כיפת לדים מעל רחבה רוקדת', 'על הרחבה'),
+  galleryPhoto('img_0384', 'טקס חופה בשקיעה על גג', 'חופת שקיעה'),
+  galleryPhoto('img_9887', 'אולם אירועים עם נברשת ולייזרים סגולים', 'אווירה'),
+  galleryPhoto('img_0131', 'עודד עם חתן וכלה במתחם אירועים פתוח', 'עוד זוג מאושר'),
+  galleryPhoto('img_1216', 'זוג בפגישת תכנון עם עודד, מחזיקים את תיק ODED EL', 'פגישת תכנון'),
+  galleryPhoto('img_9892', 'נברשת ומשולשי ניאון מעל הרחבה', 'הבמה מוכנה'),
+  galleryPhoto('img_0119', 'זוג בפגישת היכרות עם עודד', 'פגישת היכרות'),
 ]
 
 /* ---------- Legal pages ---------- */
