@@ -1,18 +1,17 @@
-import { CalendarDays, CalendarCheck, ChevronDown, CircleCheckBig, LoaderCircle, MapPin, PartyPopper, Phone, RotateCcw, User } from 'lucide-react'
+import { CalendarDays, CalendarCheck, CircleCheckBig, LoaderCircle, MapPin, Phone, RotateCcw, User } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useId, useState, type FormEvent, type ReactNode } from 'react'
-import { useBooking } from '../../../context/booking'
-import { BRAND, CONTACT, EVENT_TYPES, type EventType } from '../../../data/site'
+import { BRAND, CONTACT } from '../../../data/site'
 import { cn, legalHref, todayIso, whatsappUrl } from '../../../lib/utils'
 import { WhatsAppIcon } from '../../ui/BrandIcons'
 import { buttonStyles } from '../../ui/button'
 
-type Values = { name: string; phone: string; date: string; eventType: EventType; venue: string }
+type Values = { name: string; phone: string; date: string; venue: string }
 type Errors = Partial<Record<'name' | 'phone', string>>
 type Status = 'idle' | 'sending' | 'success' | 'error'
 
-const INITIAL: Values = { name: '', phone: '', date: '', eventType: 'חתונה', venue: '' }
+const INITIAL: Values = { name: '', phone: '', date: '', venue: '' }
 
 /** Israeli mobile / landline (05X / 0X / 07X, with or without +972) or any international number. */
 const isValidPhone = (raw: string) => {
@@ -33,12 +32,11 @@ const formatDate = (iso: string) =>
 
 function buildMessage(v: Values) {
   return [
-    `*בקשה לבדיקת זמינות – ${BRAND.name}*`,
+    `*בקשה לבדיקת זמינות לחתונה – ${BRAND.name}*`,
     `שם: ${v.name.trim()}`,
     `טלפון: ${v.phone.trim()}`,
-    v.date && `תאריך האירוע: ${formatDate(v.date)}`,
-    `סוג האירוע: ${v.eventType}`,
-    v.venue.trim() && `מיקום: ${v.venue.trim()}`,
+    v.date && `תאריך החתונה: ${formatDate(v.date)}`,
+    v.venue.trim() && `מקום החתונה: ${v.venue.trim()}`,
   ]
     .filter(Boolean)
     .join('\n')
@@ -50,19 +48,10 @@ function buildMessage(v: Values) {
  */
 export function ContactForm() {
   const id = useId()
-  const { preset } = useBooking()
   const [values, setValues] = useState<Values>(INITIAL)
   const [errors, setErrors] = useState<Errors>({})
   const [status, setStatus] = useState<Status>('idle')
   const [honeypot, setHoneypot] = useState('')
-
-  const [appliedPresetKey, setAppliedPresetKey] = useState<number | null>(null)
-
-  // A service card asked for a specific event type.
-  if (preset && preset.key !== appliedPresetKey) {
-    setAppliedPresetKey(preset.key)
-    setValues((v) => ({ ...v, eventType: preset.type }))
-  }
 
   const set = <K extends keyof Values>(key: K, value: Values[K]) => {
     setValues((v) => ({ ...v, [key]: value }))
@@ -163,7 +152,7 @@ export function ContactForm() {
             exit={{ opacity: 0, scale: 0.98 }}
             className="relative"
           >
-            <h3 className="text-2xl font-black sm:text-3xl">בדיקת זמינות לתאריך</h3>
+            <h3 className="text-2xl font-black sm:text-3xl">בדיקת זמינות לחתונה</h3>
             <p className="mt-2 text-stone-400">ממלאים פרטים קצרים – ואני חוזר אליכם עם תשובה.</p>
 
             <div className="mt-8 grid gap-5 sm:grid-cols-2">
@@ -197,7 +186,7 @@ export function ContactForm() {
                 />
               </Field>
 
-              <Field id={`${id}-date`} label="תאריך האירוע" icon={CalendarDays}>
+              <Field id={`${id}-date`} label="תאריך החתונה" icon={CalendarDays}>
                 <input
                   id={`${id}-date`}
                   name="date"
@@ -209,24 +198,7 @@ export function ContactForm() {
                 />
               </Field>
 
-              <Field id={`${id}-type`} label="סוג האירוע" icon={PartyPopper}>
-                <select
-                  id={`${id}-type`}
-                  name="eventType"
-                  value={values.eventType}
-                  onChange={(e) => set('eventType', e.target.value as EventType)}
-                  className={cn(inputClass(false), 'cursor-pointer appearance-none pe-11')}
-                >
-                  {EVENT_TYPES.map((type) => (
-                    <option key={type} value={type} className="bg-ink-800">
-                      {type}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown aria-hidden className="pointer-events-none absolute end-4 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
-              </Field>
-
-              <Field id={`${id}-venue`} label="מיקום / מקום האירוע" icon={MapPin} className="sm:col-span-2">
+              <Field id={`${id}-venue`} label="אולם / מקום החתונה" icon={MapPin}>
                 <input
                   id={`${id}-venue`}
                   name="venue"
@@ -274,7 +246,7 @@ export function ContactForm() {
               ) : (
                 <>
                   <CalendarCheck className="size-5" />
-                  בדקו זמינות לאירוע שלכם
+                  בדקו זמינות לחתונה שלכם
                 </>
               )}
             </button>

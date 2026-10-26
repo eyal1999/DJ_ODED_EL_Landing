@@ -16,10 +16,10 @@ export function Gallery() {
         titleId="gallery-title"
         title={
           <>
-            גלריה <span className="text-gradient">מאירועים</span>
+            גלריה <span className="text-gradient">מחתונות</span>
           </>
         }
-        subtitle="רגעים אמיתיים מהרחבה – חתונות, מסיבות ואירועים שהפכו לבלתי נשכחים."
+        subtitle="רגעים אמיתיים מהרחבה – חתונות שהפכו לבלתי נשכחות."
       />
 
       <div className="columns-2 gap-3 *:mb-3 sm:gap-4 sm:*:mb-4 md:columns-3 lg:columns-4">

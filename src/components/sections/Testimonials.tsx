@@ -34,7 +34,7 @@ export function Testimonials() {
             ״אנשים לא <span className="text-gradient">הפסיקו לרקוד״</span>
           </>
         }
-        subtitle="ההודעות שמחכות לי בבוקר שאחרי האירוע – בשבילן שווה כל רגע מאחורי העמדה."
+        subtitle="ההודעות שמחכות לי בבוקר שאחרי החתונה – בשבילן שווה כל רגע מאחורי העמדה."
       />
 
       <div className="mx-auto grid max-w-5xl items-start gap-5 md:grid-cols-2 md:gap-6">

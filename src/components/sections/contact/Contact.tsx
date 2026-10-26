@@ -36,7 +36,7 @@ export function Contact() {
         <Reveal delay={0.15}>
           <aside aria-label="פרטי התקשרות" className="glass flex h-full flex-col rounded-[2rem] p-6 sm:p-10">
             <h3 className="text-2xl font-black">מעדיפים לדבר ישירות?</h3>
-            <p className="mt-2 text-stone-400">זמין בטלפון ובוואטסאפ – בואו נדבר על האירוע שלכם.</p>
+            <p className="mt-2 text-stone-400">זמין בטלפון ובוואטסאפ – בואו נדבר על החתונה שלכם.</p>
 
             <ul className="mt-8 space-y-3">
               <InfoRow icon={Phone} label="טלפון" href={CONTACT.phoneHref}>

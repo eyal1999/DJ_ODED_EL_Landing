@@ -69,7 +69,7 @@ export function About() {
             </ul>
             <a href="#contact" className={`${buttonStyles()} mt-10`}>
               <MessageCircle className="size-5" />
-              בואו נדבר על האירוע שלכם
+              בואו נדבר על החתונה שלכם
             </a>
           </Reveal>
         </div>

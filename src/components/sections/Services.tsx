@@ -1,5 +1,4 @@
 import { ArrowLeft, CircleCheckBig } from 'lucide-react'
-import { useBooking } from '../../context/booking'
 import { SERVICES, type Service } from '../../data/site'
 import { Reveal } from '../ui/Reveal'
 import { Section, SectionHeading } from '../ui/Section'
@@ -12,10 +11,10 @@ export function Services() {
         titleId="services-title"
         title={
           <>
-            השירותים <span className="text-gradient">שלנו</span>
+            החתונה שלכם, <span className="text-gradient">רגע אחרי רגע</span>
           </>
         }
-        subtitle="כל אירוע מקבל פסקול משלו – מתוכנן מראש, מנוגן בלייב ומותאם לרחבה בזמן אמת."
+        subtitle="מהפגישה הראשונה ועד הסט האחרון – כל חלק בערב מקבל פסקול משלו, מתוכנן מראש ומותאם לרחבה בזמן אמת."
       />
       <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
         {SERVICES.map((service, i) => (
@@ -29,7 +28,6 @@ export function Services() {
 }
 
 function ServiceCard({ service }: { service: Service }) {
-  const { presetEventType } = useBooking()
   const { icon: Icon } = service
 
   return (
@@ -69,7 +67,6 @@ function ServiceCard({ service }: { service: Service }) {
         </ul>
         <a
           href="#contact"
-          onClick={() => service.eventType && presetEventType(service.eventType)}
           className="mt-auto inline-flex items-center gap-1.5 self-start pt-7 text-sm font-bold text-gold-400 transition-all hover:gap-3 hover:text-white"
         >
           לבדיקת תאריך

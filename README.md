@@ -1,6 +1,7 @@
 # DJ ODED EL – Landing Page
 
-Hebrew (RTL) one-page site for **ODED EL**, a DJ and producer from Rishon LeZion for weddings and events.
+Hebrew (RTL) one-page site for **ODED EL**, a wedding DJ and producer from Rishon LeZion. At Oded's request the
+site talks about weddings only – no henna, family, corporate or party events.
 
 **Live:** https://www.djodedel.com
 
