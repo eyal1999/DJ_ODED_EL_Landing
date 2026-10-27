@@ -3,6 +3,7 @@ import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } f
 import { useEffect, useRef, useState, type RefObject } from 'react'
 import { useA11y } from '../../context/a11y'
 import { asset, BRAND, HERO } from '../../data/site'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { cn, whatsappUrl } from '../../lib/utils'
 import { WhatsAppIcon } from '../ui/BrandIcons'
 import { buttonStyles } from '../ui/button'
@@ -167,6 +168,11 @@ function HeroVideo({ sectionRef, scale, shade, still, paused }: HeroVideoProps) 
     () => !!(navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData,
   )
   const playVideo = !still && !saveData
+  // A vertical clip stretched across a landscape screen looks stuck and choppy, so those get the wide cut.
+  const wide = useMediaQuery('(orientation: landscape)')
+  const clip = wide ? HERO.wideVideo : HERO.video
+  // The wide cut has the desaturation baked in; the vertical one gets it from CSS.
+  const fit = wide ? 'size-full object-cover' : 'size-full object-cover object-[50%_35%] saturate-[.8]'
 
   useEffect(() => {
     const section = sectionRef.current
@@ -186,7 +192,7 @@ function HeroVideo({ sectionRef, scale, shade, still, paused }: HeroVideoProps) 
       video.muted = true
       video.play().catch(() => {})
     }
-  }, [covered, paused, playVideo])
+  }, [covered, paused, playVideo, wide])
 
   return (
     <motion.div
@@ -195,7 +201,9 @@ function HeroVideo({ sectionRef, scale, shade, still, paused }: HeroVideoProps) 
       className={cn('fixed inset-0 -z-10 bg-ink-950', covered && 'invisible')}
     >
       {playVideo ? (
+        // Keyed by clip: a <video> doesn't reload when only its <source> children change.
         <video
+          key={clip.mp4}
           ref={videoRef}
           autoPlay
           muted
@@ -203,14 +211,14 @@ function HeroVideo({ sectionRef, scale, shade, still, paused }: HeroVideoProps) 
           playsInline
           preload="auto"
           disablePictureInPicture
-          poster={HERO.video.poster}
-          className="size-full object-cover object-[50%_35%] saturate-[.8]"
+          poster={clip.poster}
+          className={fit}
         >
-          <source src={HERO.video.webm} type="video/webm" />
-          <source src={HERO.video.mp4} type="video/mp4" />
+          <source src={clip.webm} type="video/webm" />
+          <source src={clip.mp4} type="video/mp4" />
         </video>
       ) : (
-        <img src={HERO.video.poster} alt="" className="size-full object-cover object-[50%_35%] saturate-[.8]" />
+        <img src={clip.poster} alt="" className={fit} />
       )}
 
       {/* Legibility: overall dim, darker behind the text column (start side in RTL) and toward the sheet below. */}

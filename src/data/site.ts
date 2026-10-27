@@ -76,8 +76,18 @@ export const HERO = {
   titleTop: 'האמנות של המוזיקה',
   titleBottom: 'לחתונה שלכם',
   lead: 'רחבה מלאה מהשיר הראשון ועד האחרון: סט שנבנה במיוחד בשבילכם – מזרחית, מיינסטרים ולהיטים – עם הפקות ורמיקסים ייחודיים שמרימים את הערב.',
-  /** Promo reel (14s loop cut from Oded's Facebook reel), pinned behind the hero. */
+  /**
+   * Promo reel (14s loop cut from Oded's Facebook reel), pinned behind the hero. Portrait screens get the
+   * vertical 720x1280 cut. Landscape screens get `wideVideo`: a square 720x720 re-edit centred on the people in
+   * each shot, without the reel's freeze-frame and flash effects (blown up across a wide screen they looked stuck
+   * and choppy). Any landscape screen shows a band of it at the same zoom as the vertical cut.
+   */
   video: { webm: asset('video/hero.webm'), mp4: asset('video/hero.mp4'), poster: asset('video/hero-poster.webp') },
+  wideVideo: {
+    webm: asset('video/hero-wide.webm'),
+    mp4: asset('video/hero-wide.mp4'),
+    poster: asset('video/hero-wide-poster.webp'),
+  },
   highlights: [
     { icon: Heart, label: 'מתמחה בחתונות' },
     { icon: Disc3, label: 'מזרחית · מיינסטרים · להיטים' },

@@ -23,7 +23,11 @@ services, SoundCloud tracks, Instagram posts, gallery photos and testimonials.
 
 - **Photos** – `public/photos/` (currently web-resolution copies from Oded's Instagram / SoundCloud;
   replace with originals under the same names).
-- **Hero video** – `public/video/hero.{webm,mp4}` + `hero-poster.webp` (a 14-second loop from his promo reel).
+- **Hero video** – full-screen behind the hero, in two cuts of his promo reel. Portrait screens play
+  `public/video/hero.{webm,mp4}` + `hero-poster.webp` (a 14-second vertical loop). Landscape screens play
+  `hero-wide.{webm,mp4}` + `hero-wide-poster.webp`: an 8.8-second square (720x720) re-edit of the same footage,
+  centred on the people in each shot, steadied where that helped, and without the reel's freeze-frame / flash
+  effects. Stretched across a wide screen, the vertical clip looked stuck and choppy.
 - **Logo** – `public/brand/`, favicon and `public/og-image.jpg` (link-preview image).
 - **Testimonials / videos** – the sections hide themselves while `TESTIMONIALS` / `VIDEOS` are empty.
 - **Legal pages** – `privacy.html`, `terms.html`, `accessibility.html`, with their text in
